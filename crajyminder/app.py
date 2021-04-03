@@ -19,6 +19,8 @@ env = Environment(
     enable_async=True,
 )
 
+app.static("/static", "./crajyminder/static")
+
 
 @app.route("/", methods=["GET"])
 async def index(request: Request) -> HTTPResponse:
