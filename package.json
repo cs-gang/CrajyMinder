@@ -1,0 +1,25 @@
+{
+  "name": "crajyminder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "css/stylesheet.scss",
+  "scripts": {
+    "css-build": "node-sass --omit-source-map-url crajyminder/css/stylesheet.scss crajyminder/css/stylesheet.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cs-gang/CrajyMinder.git"
+  },
+  "author": "cs-gang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cs-gang/CrajyMinder/issues"
+  },
+  "homepage": "https://github.com/cs-gang/CrajyMinder#readme",
+  "devDependencies": {
+    "bulma": "^0.9.2",
+    "node-sass": "^5.0.0"
+  }
+}
