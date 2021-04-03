@@ -4,7 +4,7 @@
   "description": "",
   "main": "css/stylesheet.scss",
   "scripts": {
-    "css-build": "node-sass --omit-source-map-url crajyminder/css/stylesheet.scss crajyminder/css/stylesheet.css",
+    "css-build": "node-sass --omit-source-map-url crajyminder/static/css/stylesheet.scss crajyminder/static/css/stylesheet.css",
     "css-watch": "npm run css-build -- --watch",
     "start": "npm run css-watch"
   },

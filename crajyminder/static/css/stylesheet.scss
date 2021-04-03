@@ -2,24 +2,18 @@
 
 
 //Colors
-$darkbrown: #433F3C;
-$grey: #86817E;
-$navybluedark: #171140;
-$beige: #F4F3F1;
-$violet: #401F7A;
+$darkblue: #0E0E52;
+$navy: #1E1E71;
 $discord: #7289DA;
+$grey: #C2C2C2;
 
 //Bulma global variables
-$grey-dark: $darkbrown;
-$grey-light: $grey;
-$primary: $darkbrown;
-$link: $navybluedark;
-$warning: $grey;
-$success: $violet;
-$danger: $beige;
+$primary: $darkblue;
+$danger: $navy;
 $info: $discord;
+$link: $grey;
 
 // Update some of Bulma's component variables
-$body-background-color: $beige;
+$body-background-color: $navy;
 
-@import "../../node_modules/bulma/bulma.sass";
+@import "../../../node_modules/bulma/bulma.sass";
