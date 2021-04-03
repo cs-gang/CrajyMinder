@@ -1,4 +1,3 @@
-import asyncio
 import os
 from functools import partial
 
@@ -9,7 +8,7 @@ from sanic.request import Request
 from sanic.response import json, HTTPResponse, redirect
 from sanic_session import Session, InMemorySessionInterface
 
-from crajyminder.utils import render_page, make_session
+from crajyminder.utils import DiscordUser, render_page, make_session
 
 load_dotenv(find_dotenv())
 
@@ -17,7 +16,6 @@ API_BASE_URL = "https://discordapp.com/api"
 AUTHORIZATION_BASE_URL = API_BASE_URL + "/oauth2/authorize"
 TOKEN_URL = API_BASE_URL + "/oauth2/token"
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
-REDIRECT_URI = os.environ.get("REDIRECT_URI", "http://localhost:8000/discord/callback")
 
 app = Sanic("CrajyMinder")
 env = Environment(
@@ -35,13 +33,14 @@ def token_updater(request: Request, token: dict) -> None:
     request.ctx.session["oauth2_token"] = token
 
 
+# Routes
 @app.route("/", methods=["GET"])
 async def index(request: Request) -> HTTPResponse:
     output = await render_page(env, file="index.html")
     return HTTPResponse(output, content_type="text/html")
 
 
-@app.route("/discord")
+@app.route("/discord", methods=["GET"])
 async def discord_login(request: Request) -> HTTPResponse:
     discord = make_session(token_updater=partial(token_updater, request))
     url, state = discord.authorization_url(AUTHORIZATION_BASE_URL)
@@ -66,3 +65,28 @@ async def discord_login_callback(request: Request) -> HTTPResponse:
     url = app.url_for("index")
     print(url)
     return redirect(url)
+
+
+@app.route("/notes", methods=["GET", "POST"])
+async def notes(request: Request) -> HTTPResponse:
+    # TODO: Finish this
+    raise NotImplementedError
+
+    token = request.ctx.session.get("oauth2_token")
+
+    if not token:
+        return HTTPResponse(status=403, body="You're not signed in.")
+
+    user = await DiscordUser.from_discord(app, request)
+    notes = await user.fetch_notes(app)
+    reminders = await user.fetch_reminders(app)
+
+    output = await render_page(
+        env,
+        file="notes.html",
+        username=user.name,
+        avatar_url=user.avatar_url,
+        notes=notes,
+        reminders=reminders,
+    )
+    return HTTPResponse(output, content_type="text/html")
