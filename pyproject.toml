@@ -9,6 +9,7 @@ license = "MIT"
 python = "^3.8"
 sanic = "^21.3.2"
 python-dotenv = "^0.17.0"
+Jinja2 = "^2.11.3"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.11.1"
