@@ -33,7 +33,7 @@ def make_session(
         token=token,
         state=state,
         redirect_uri=REDIRECT_URI,
-        scope=["identify", "email"],
+        scope=["identify"],
         auto_refresh_kwargs={"client_id": CLIENT_ID, "client_secret": CLIENT_SECRET},
         token_updater=token_updater,
         auto_refresh_url=TOKEN_URL,
