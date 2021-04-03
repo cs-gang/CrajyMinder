@@ -1,2 +1,24 @@
 @charset "utf-8";
+
+
+//Colors
+$darkbrown: #433F3C;
+$grey: #86817E;
+$navybluedark: #171140;
+$beige: #F4F3F1;
+$violet: #401F7A;
+$discord: #7289DA;
+
+//Bulma global variables
+$grey-dark: $darkbrown;
+$grey-light: $grey;
+$primary: $darkbrown;
+$link: $navybluedark;
+$success: $violet;
+$danger: $beige;
+$info: $discord;
+
+// Update some of Bulma's component variables
+$body-background-color: $beige;
+
 @import "../../node_modules/bulma/bulma.sass";
